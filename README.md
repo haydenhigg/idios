@@ -25,7 +25,7 @@ import "./idios"
 ### extracting
 
 - `(model Idios) Common(example string) []string`: Extracts the relatively-common words *(**not** stemmed tokens)* from `example`.
-- `(model Idios) Uncommon(example string) []string`: Extracts the relatively-uncommon words (i.e. the words that support the semantics of the text the most, according to their probabilities in the training corpus) from `example`.
+- `(model Idios) Uncommon(example string) []string`: Extracts the relatively-uncommon words (i.e. the words that contribute the most to the semantics of the input string, according to their probabilities in the training corpus) from `example`.
 
 ### example
 
