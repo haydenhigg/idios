@@ -1,6 +1,6 @@
-# bengal
+# idios
 
-Easy-to-use Go implementation of the multinomial Naive Bayes for text classification, optimized for multiple output features.
+Go package for extracting "common" or "uncommon" features from a piece of text, given a training corpus.
 
 ## install
 
@@ -8,11 +8,11 @@ Install the Porter2 implementation with:
 `$ go get -u github.com/dchest/stemmer/porter2`
 
 Then, while in your project directory:
-`$ git clone https://github.com/haydenhigg/bengal`
+`$ git clone https://github.com/haydenhigg/idios`
 
 Finally, import it as:
 ```go
-import "./bengal"
+import "./idios"
 ```
 
 ## use
@@ -20,14 +20,12 @@ import "./bengal"
 ### modelling
 
 - `StemExample(text string) []string`: Tokenizes a string.
-- `NewModel(examples []string, output [][]string) MultinomialNB`: Tokenizes the inputs using `StemExamples` and creates a model from them.
-- `NewModelFromVectors(input [][]string, output [][]string) MultinomialNB`: Creates a model from tokenized inputs.
-- `(model MultinomialNB) Predict(example string) []string`: Predicts the classes of the input example using `StemExample`.
-- `(model MultinomialNB) PredictVector(input []string) []string`: Predicts the classes of the tokenized input.
+- `NewModel(text string) Idios`: Returns an Idios struct with the probabilistic data per unique token of the training string `text`.
 
 ### extracting
 
--
+- `(model Idios) Common(example string) []string`: Extracts the relatively-common words *(**not** stemmed tokens)* from `example`.
+- `(model Idios) Uncommon(example string) []string`: Extracts the relatively-uncommon words (i.e. the words that support the semantics of the text the most, according to their probabilities in the training corpus) from `example`.
 
 ### example
 
