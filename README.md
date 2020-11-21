@@ -1,6 +1,6 @@
 # idios
 
-Go package for extracting "common" or "uncommon" features from a piece of text, given a training corpus.
+Go package for extracting "common" or "uncommon" features from a piece of text, given a training corpus. Given its probabilistic approach and simple (mean) calculation to determine the proper threshold, this tool is hypothetically language-agnostic, and is efficient to train.
 
 ## install
 
@@ -20,11 +20,11 @@ import "./idios"
 ### modelling
 
 - `StemExample(text string) []string`: Tokenizes a string.
-- `NewModel(text string) Idios`: Returns an Idios struct with the probabilistic data per unique token of the training string `text`.
+- `NewModel(text string) Idios`: Returns an Idios struct with the probability per unique token of the training string `text`.
 
 ### extracting
 
-- `(model Idios) Common(example string) []string`: Extracts the relatively-common words *(**not** stemmed tokens)* from `example`.
+- `(model Idios) Common(example string) []string`: Extracts the relatively-common words (***not*** stemmed tokens, but the original words from the input string) from `example`.
 - `(model Idios) Uncommon(example string) []string`: Extracts the relatively-uncommon words (i.e. the words that contribute the most to the semantics of the input string, according to their probabilities in the training corpus) from `example`.
 
 ### example
