@@ -8,6 +8,8 @@ import (
 	"strings"
 	"regexp"
 	"github.com/dchest/stemmer/porter2"
+	
+	"math"
 )
 
 func StemExample(text string) []string {
@@ -37,7 +39,7 @@ func NewModel(text string) Idios {
 	var probs []float64
 
 	for _, word := range unique(tokens) {
-		prob := float64(count(tokens, word)) / float64(wordCount)
+		prob := math.Log1p(float64(count(tokens, word)) / float64(wordCount))
 
 		vocabulary[word] = prob
 		probs = append(probs, prob)
@@ -45,7 +47,7 @@ func NewModel(text string) Idios {
 
 	return Idios{
 		Vocabulary: vocabulary,
-		Threshold: mean(probs)}
+		Threshold: median(probs)}
 }
 
 func (model Idios) isCommonFilter(prob float64, ok bool) bool {
