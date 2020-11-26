@@ -36,12 +36,12 @@ func count(arr []string, val string) int {
 	return ret
 }
 
-func mean(arr []float64) float64 {
-	ret := float64(0)
+func median(arr []float64) float64 {
+        l := len(arr)
 
-	for _, v := range arr {
-		ret += v
-	}
-
-	return ret / float64(len(arr))
+        if l % 2 == 0 {
+                return (arr[l / 2 - 1] + arr[l / 2]) / 2
+        } else {
+                return arr[int(l / 2)]
+        }
 }
