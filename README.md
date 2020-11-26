@@ -1,6 +1,6 @@
 # idios
 
-Go package for extracting "common" or "uncommon" features from a piece of text, given a training corpus. Given its probabilistic approach and simple (mean) calculation to determine the proper threshold, this tool is hypothetically language-agnostic, and is efficient to train.
+Go package for extracting "common" or "uncommon" features from a piece of text, given a training corpus. This tool is hypothetically language-agnostic, and is efficient to run on test documents after "training".
 
 ## install
 
